@@ -78,7 +78,7 @@ export default {
   },
   data() {
     return {
-      step: 3,
+      step: 1,
     }
   },
 
@@ -91,7 +91,6 @@ export default {
       this.step--;
       //console.log(this.step);
     },
-
 
   }
 }

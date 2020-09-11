@@ -1,0 +1,28 @@
+.confirmation
+  display: flex
+  flex-direction: column
+  height: calc(100% - 111px)
+  justify-content: center
+  &__text
+    text-align: center
+    font-size: 30px
+    padding-bottom: 38px
+  &__checkMark
+    display: block
+    width: 200px
+    height: 200px
+    border: 1px solid green
+    border-radius: 50%
+    position: relative
+    margin: 0 auto
+    &:before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background: green
+      clip-path: polygon(45% 64%, 84% 14%, 100% 28%, 47% 100%, 0 49%, 15% 32%)
+
+

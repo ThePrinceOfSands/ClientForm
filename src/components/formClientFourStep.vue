@@ -1,17 +1,13 @@
 <template>
-<div class="final">
-  <div class="confirmation">
+<div class="confirmation">
 
     <div class="confirmation__text">
-
+        Новый клиент успешно создан.
     </div>
 
-    <div class="confirmation__checkMark">
-
-    </div>
+    <div class="confirmation__checkMark"></div>
 
   </div>
-</div>
 </template>
 
 <script>
@@ -20,6 +16,4 @@ name: "formClientFourStep",
 }
 </script>
 
-<style scoped>
 
-</style>
