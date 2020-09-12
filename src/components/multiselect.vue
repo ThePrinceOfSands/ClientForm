@@ -40,9 +40,6 @@
   </div>
 </template>
 
-
-
-
 <script>
 export default {
   name: "multiSelect",
@@ -50,13 +47,13 @@ export default {
     return {
       focused: false, //Show answer options(bool)
       value: [],  //array of answers
-      optionsTop: '34px;'
+      optionsTop: '34px;',
     }
   },
   computed: {
     formattedOptions() {
       return this.options.map(option => {
-        let checked = this.value.some(v => v === option[this.valueProperty])
+        let checked = this.value.some(v => v === option[this.displayProperty])
         return {...option, checked};
       });
     }
@@ -75,15 +72,23 @@ export default {
     preventClose(e) {
       e.stopPropagation();
     },
+
     handleOptionClick(i) {
-      let clickedValue = this.options[i][this.valueProperty];
+      let clickedValue = this.options[i][this.displayProperty];
+
       let existIndex = this.value.findIndex( v => v === clickedValue);
+      let newValue = [...this.value];
+
 
       if(existIndex === -1) {
         this.value.push(clickedValue);
+        newValue.push(clickedValue);
       } else {
         this.value.splice(existIndex, 1);
+        newValue.splice(existIndex, 1);
       }
+
+      this.$emit('input', newValue);
 
       setTimeout(this.fixTop, 100);
     }
@@ -96,20 +101,14 @@ export default {
         return []
       },
     },
-    valueProperty: {
-      type: String,
-      default() {
-        return 'value';
-      }
-    },
     displayProperty: {
       type: String,
       default() {
         return 'name'
       }
-    }
-    }
-  }
+    },
+  },
+}
 </script>
 
 /*style for multiselect*/

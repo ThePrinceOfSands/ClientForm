@@ -44,6 +44,7 @@ export default {
       areOptionsVisible: false
     }
   },
+
   methods: {
     selectOption(option){
       this.$emit('select', option);
@@ -81,7 +82,7 @@ export default {
   margin: 0;
   padding: 10px;
   border: 1px solid #ccc;
-  width: 93%;
+  width: 100%;
   min-height: 34px;
 }
 

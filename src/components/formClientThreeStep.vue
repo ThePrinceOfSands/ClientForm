@@ -20,6 +20,19 @@
           </div>
         </div>
 
+      </div>
+
+      <div class="dataPassport__step dataPassport__step__align">
+
+        <div class="dataPassport__step__ch">
+          <div>
+            <label for="series" class="series">Серия</label>
+          </div>
+          <div>
+            <input type="number" id="series" onKeyPress="if(this.value.length===4) return false;">
+          </div>
+        </div>
+
         <div class="dataPassport__step__ch">
           <div>
             <label for="number" class="Number">Номер</label>
@@ -40,25 +53,16 @@
 
         <div class="dataPassport__step__ch">
           <div>
-            <label for="dataIssue" class="dataIssue require">Дата выдач</label>
+            <label for="dataIssue" class="dataIssue require">Дата выдачи</label>
           </div>
           <div>
-            <input type="text" id="dataIssue">
+            <input type="text" id="dataIssue"  v-model="dataIssue" placeholder="дд/мм/гггг">
           </div>
         </div>
 
-      </div>
 
-      <div class="dataPassport__step">
 
-        <div class="dataPassport__step__ch">
-          <div>
-            <label for="series" class="series">Серия</label>
-          </div>
-          <div>
-            <input type="number" id="series" onKeyPress="if(this.value.length===4) return false;">
-          </div>
-        </div>
+
 
       </div>
 
@@ -71,6 +75,7 @@ import vSelect from './select'
 
 export default {
   name: "formClientThreeStep",
+  props: ['mainData'],
   components: {
     vSelect
   },
@@ -82,11 +87,20 @@ export default {
         {name: 'Вод. удостоверение', value: 3},
       ],
       selected: '',
+      dataIssue: '',
     }
   },
   methods: {
     optionSelect(option) {
       this.selected = option.name;
+    }
+  },
+
+  watch: {
+    dataIssue() {
+      this.mainData({
+        dataIssue: this.dataIssue,
+      })
     }
   }
 }

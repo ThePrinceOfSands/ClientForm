@@ -65,7 +65,7 @@
             <label for="town" class="town require">Город</label>
           </div>
           <div>
-            <input type="text" id="town">
+            <input type="text" id="town" v-model="town">
           </div>
         </div>
       </div>
@@ -75,6 +75,19 @@
 
 <script>
 export default {
-name: "formClientTwoStep"
+  name: "formClientTwoStep",
+  props: ['mainData'],
+  data() {
+    return {
+      town: '',
+    }
+  },
+  watch: {
+    town() {
+      this.mainData({
+        town: this.town,
+      })
+    }
+  }
 }
 </script>
