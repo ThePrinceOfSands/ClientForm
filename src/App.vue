@@ -2,28 +2,29 @@
   <div id="app">
     <div class="window">
 
-      <form novalidate>
         <formClientOneStep
             v-show="step === 1"
-            :mainData="changeData"
+            :next-step='nextStep'
         />
 
         <formClientTwoStep
             v-show="step === 2"
-            :mainData="changeData"
+            :next-step='nextStep'
+            :back-step="backStep"
         />
 
         <formClientThreeStep
             v-show="step === 3"
-            :mainData="changeData"
+            :next-step='nextStep'
+            :back-step="backStep"
         />
 
         <formClientFourStep
             v-show="step === 4"
+            :back-step="backStep"
         />
-      </form>
 
-      <div class="buttonAndWarning">
+      <!--<div class="buttonAndWarning">
         <div
             v-show="step !== 4"
         >
@@ -43,7 +44,7 @@
           >
             Далее</button>
         </div>
-      </div>
+      </div>-->
 
       <div class="dots">
         <div class="dots__dot"
@@ -73,8 +74,6 @@ import formClientOneStep from '@/components/formClientOneStep';
 import formClientTwoStep from '@/components/formClientTwoStep';
 import formClientThreeStep from '@/components/formClientThreeStep';
 import formClientFourStep from '@/components/formClientFourStep';
-//import { required, minLength } from 'vuelidate/lib/validators';
-
 
 export default {
   name: 'app',
@@ -87,38 +86,20 @@ export default {
   data() {
     return {
       step: 1,
-      formReg: {
-        name: '',
-        surname: '',
-        birthday: '',
-        tel: '',
-        gender: '',
-        selected: '',
-        town: '',
-        dataIssue: '',
-
-      }
     }
   },
 
   methods: {
     nextStep() {
-      if(this.step < 4)
+      if(this.step < 4) {
         this.step++;
-      //console.log(this.step);
+      }
     },
     backStep() {
       if(this.step > 1)
         this.step--;
-      //console.log(this.step);
     },
-    changeData(data) {
-      let keys = Object.keys(data);
-      this.formReg[keys] = data[keys];
-      console.log(this.formReg);
-    }
-
-  }
+  },
 }
 </script>
 

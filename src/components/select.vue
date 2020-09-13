@@ -1,13 +1,14 @@
 <template>
-  <div class="vSelect">
-    <div class="select">
-      <p class="title"
+    <div class="select title"
          @click="areOptionsVisible = !areOptionsVisible"
-      >
-        {{ selected }}</p>
+         tabindex="-1"
+         ref="parent"
+    >
+      {{ selected }}
       <div
           class="options"
           v-if="areOptionsVisible"
+          :style="{top: optionsTop}"
       >
         <p
             v-for="option in options"
@@ -18,7 +19,6 @@
         </p>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -41,7 +41,8 @@ export default {
   },
   data() {
     return {
-      areOptionsVisible: false
+      areOptionsVisible: false,
+      optionsTop: '1px;',
     }
   },
 
@@ -49,14 +50,19 @@ export default {
     selectOption(option){
       this.$emit('select', option);
       this.areOptionsVisible = false;
+      setTimeout(this.fixTop, 100);
     },
     hideSelect() {
       this.areOptionsVisible = false;
-    }
-
+    },
+    fixTop() {
+      this.optionsTop = this.$refs.parent.clientHeight + 1 + 'px';
+    },
   },
+
   mounted() {
-    document.addEventListener('click', this.hideSelect.bind(this), true)
+    document.addEventListener('click', this.hideSelect.bind(this), true);
+    this.fixTop();
   },
 
   beforeDestroy() {
@@ -65,50 +71,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-
-.vSelect {
-  position: relative;
-}
-
-.select {
-  position: absolute;
-  min-width: 195px;
-  cursor: pointer;
-}
-
-.select p {
-  margin: 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  width: 100%;
-  min-height: 34px;
-}
-
-.title{
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.options {
-  border: solid 1px #aeaeae;
-  position: absolute;
-  right: 0;
-  width: 100%;
-  margin-top: 8px;
-  box-shadow: 0 3px 3px 2px #e3e3e3;
-}
-
-.options p {
-  margin-top: 2px;
-}
-
-.options p:hover {
-  background: #e7e7e7;
-}
-
-.title {
-  border: solid 1px #aeaeae;
-}
-</style>

@@ -4,6 +4,8 @@
       Паспорт
     </div>
 
+    <form class="formFirst" @submit.prevent="submitHandler" novalidate>
+
     <div class="dataPassport">
       <div class="dataPassport__step">
 
@@ -56,26 +58,51 @@
             <label for="dataIssue" class="dataIssue require">Дата выдачи</label>
           </div>
           <div>
-            <input type="text" id="dataIssue"  v-model="dataIssue" placeholder="дд/мм/гггг">
+            <input type="date"
+                   id="dataIssue"
+                   v-model="form.dataIssue"
+                   :class="{invalid: $v.form.dataIssue.$dirty && !$v.form.dataIssue.required}"
+            >
+
+            <div class="tooltip">
+              <div v-if="($v.form.dataIssue.$dirty && !$v.form.dataIssue.required)"
+              >
+                <small class="tooltip__right tooltip__right-fourth"
+                >Пожалуйста, укажите дату получения паспорта.</small>
+              </div>
+            </div>
+
           </div>
         </div>
+      </div>
+    </div>
 
+    <div class="buttonAndWarning">
+      <div >
+        <span>*</span> - поле обязательное для заполнения
+      </div>
+      <div class="buttons">
+      <button class="buttons__stepBack"
+              @click.prevent="nextStepBack"
+      > Назад</button>
 
-
-
+      <button class="buttons__stepForward"
+              type="submit"
+      > Далее</button>
 
       </div>
-
     </div>
+    </form>
   </div>
 </template>
 
 <script>
-import vSelect from './select'
+import vSelect from './select';
+import {required} from "vuelidate/lib/validators";
 
 export default {
   name: "formClientThreeStep",
-  props: ['mainData'],
+  props: ['nextStep', 'backStep'],
   components: {
     vSelect
   },
@@ -87,20 +114,32 @@ export default {
         {name: 'Вод. удостоверение', value: 3},
       ],
       selected: '',
-      dataIssue: '',
+      form: {
+        dataIssue: '',
+      }
     }
   },
   methods: {
     optionSelect(option) {
       this.selected = option.name;
-    }
+    },
+    nextStepForward() {
+      this.nextStep({});
+    },
+    nextStepBack(){
+      this.backStep({});
+    },
+    submitHandler() {
+      this.$v.form.$touch();
+      if (!this.$v.form.$error)
+        this.nextStepForward();
+    },
   },
-
-  watch: {
-    dataIssue() {
-      this.mainData({
-        dataIssue: this.dataIssue,
-      })
+  validations:{
+    form: {
+      dataIssue: {
+        required,
+      }
     }
   }
 }

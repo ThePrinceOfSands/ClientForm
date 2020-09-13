@@ -4,6 +4,8 @@
       Адрес
     </div>
 
+    <form class="formFirst" @submit.prevent="submitHandler" novalidate>
+
     <div class="address">
       <!--Первая колона-->
 
@@ -64,29 +66,80 @@
           <div>
             <label for="town" class="town require">Город</label>
           </div>
+
           <div>
-            <input type="text" id="town" v-model="town">
+            <input type="text"
+                   id="town"
+                   v-model.trim="form.town"
+                   :class="{invalid: $v.form.town.$dirty && !$v.form.town.required}"
+            >
+
+            <div class="tooltip">
+              <div v-if="($v.form.town.$dirty && !$v.form.town.required)"
+              >
+                <small class="tooltip__right tooltip__right-second"
+                >Пожалуйста, укажите Ваш город.</small>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
+
+    <div class="buttonAndWarning">
+      <div >
+
+        <span>*</span> - поле обязательное для заполнения </div>
+
+      <div class="buttons">
+        <button class="buttons__stepBack"
+                @click.prevent="nextStepBack"
+        > Назад</button>
+
+        <button class="buttons__stepForward"
+                type="submit"
+        >
+          Далее</button>
+
+      </div>
+    </div>
+    </form>
   </div>
 </template>
 
 <script>
+import {required} from "vuelidate/lib/validators";
+
 export default {
   name: "formClientTwoStep",
-  props: ['mainData'],
+  props: ['nextStep', 'backStep'],
+
   data() {
     return {
-      town: '',
+      form: {
+        town: '',
+      }
     }
   },
-  watch: {
-    town() {
-      this.mainData({
-        town: this.town,
-      })
+  methods:{
+    nextStepForward() {
+      this.nextStep({});
+    },
+    nextStepBack(){
+      this.backStep({});
+    },
+    submitHandler() {
+      this.$v.form.$touch();
+      if (!this.$v.form.$error)
+        this.nextStepForward();
+    },
+  },
+  validations:{
+    form: {
+      town: {
+        required,
+      }
     }
   }
 }
