@@ -1,0 +1,162 @@
+@media (max-width: 843px)
+  *
+    outline: none
+
+  .window
+    top: 0
+
+  .tooltip
+    &__left
+      width: 255px
+      background-color: transparent
+      text-align: center
+      border-radius: 6px
+      padding: 0
+      right: 236px
+      border: 0
+      font-size: 11px
+      color: red
+      &:after
+        content: none
+      &-first
+        top: calc(22% + 26px)
+      &-second
+        top: calc(23% + 100px)
+        right: 50%
+      &-third
+        top: calc(40% + 124px)
+        right: 50%
+      &-fourth
+        top: calc(40% + 201px)
+        right: 47%
+    &__right
+      width: 255px
+      background-color: transparent
+      text-align: center
+      border-radius: 6px
+      padding: 0
+      border: 0
+      font-size: 11px
+      color: red
+      left: 52%
+      &:after
+        content: none
+      &-first
+        top: calc(30% - 21px)
+      &-second
+        top: calc(29% + 65px)
+        &-mobile
+          left: 47%
+      &-third
+        top: calc(64% + 58px)
+        left: 54%
+      &-fourth
+        top: calc(50% + 73px)
+
+  .buttons__stepForward
+    &:hover
+      border: 0
+      box-shadow: 0 0 black
+      outline: none !important
+
+@media (max-width: 768px)
+  .dots
+    display: none
+  .window
+    position: absolute
+    top: 0
+    margin: 0 auto
+
+@media (max-width: 425px)
+  .window
+    width: 315px
+    height: 850px
+  .main
+    margin-top: 4px
+  .string
+    margin-top: 0
+  .beforeString
+    flex-direction: column
+    align-items: center
+  .groupsDoctors
+    flex-direction: column
+    align-items: center
+    margin-top: 0
+    width: 296px
+    height: 95px
+  .multiselect
+    min-width: 174px
+    z-index: 2
+  .doctors
+    right: 28%
+    margin-top: 50px
+    margin-left: 47px
+    &__mobile
+      margin-left: -33px
+  .checkbox
+    padding: 92px 44px 22px
+  .buttonAndWarning__star
+    margin-left: 0
+
+  .buttons
+    border: 0
+    box-shadow: 0 0 black
+    outline: none
+    &__stepForward
+      left: calc(101% + -98px)
+      top: calc(100% + 50px)
+      &__formOne
+        left: calc(50% + 44px)
+        top: calc(63% + 237px)
+    &__stepBack
+      top: calc(100% + 50px)
+      &__clientFour
+        top: calc(50% + 323px)
+
+  .tooltip
+    &__left
+      &-first
+        top: calc(13% + 28px)
+        left: calc(12% - 7px)
+      &-second
+        top: calc(23% + 23px)
+        right: 15%
+      &-third
+        top: calc(26% + 129px)
+        right: 14%
+      &-fourth
+        top: calc(45% + 207px)
+        right: 7%
+    &__right
+      &-first
+        left: calc(11% + 12px)
+        top: calc(52% - 13px)
+      &-second
+        top: calc(52% + 65px)
+        left: calc(11% + 10px)
+        &-mobile
+          top: calc(52% + 94px)
+          left: calc(11% - 9px)
+      &-third
+        top: calc(72% + 55px)
+        left: 12%
+      &-fourth
+        left: calc(18% - 10px)
+        top: calc(50% + 15px)
+
+  .address
+    flex-direction: column
+    margin: 0 auto
+    align-items: center
+    padding-bottom: 155px
+
+  .dataPassport
+    flex-direction: column
+    align-items: center
+    padding-bottom: 256px
+    &__step
+      &__align
+        margin-left: 0
+      &-typeDocument
+        margin-right: 63px
+

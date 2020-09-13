@@ -1,9 +1,8 @@
 .dots
-  width: 90%
-  margin: 0 auto 0
+  @include calc('width', '50% + 215px')
   display: flex
   justify-content: center
-  top: calc(350px + 50% + 20px)
+  top: calc(325px + 50%)
   position: absolute
   &__dot
     height: 16px

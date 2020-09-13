@@ -7,7 +7,7 @@
     <form class="formFirst" @submit.prevent="submitHandler" novalidate>
 
     <div class="dataPassport">
-      <div class="dataPassport__step">
+      <div class="dataPassport__step dataPassport__step-typeDocument">
 
         <div class="dataPassport__step__ch">
           <div>
@@ -78,15 +78,15 @@
     </div>
 
     <div class="buttonAndWarning">
-      <div >
+      <div class="buttonAndWarning__star">
         <span>*</span> - поле обязательное для заполнения
       </div>
       <div class="buttons">
-      <button class="buttons__stepBack"
+      <button class="buttons__stepBack buttons__stepBack-formThree"
               @click.prevent="nextStepBack"
       > Назад</button>
 
-      <button class="buttons__stepForward"
+      <button class="buttons__stepForward buttons__stepForward-formThree"
               type="submit"
       > Далее</button>
 

@@ -77,7 +77,7 @@
             <div class="tooltip">
               <div v-if="($v.form.town.$dirty && !$v.form.town.required)"
               >
-                <small class="tooltip__right tooltip__right-second"
+                <small class="tooltip__right tooltip__right-second tooltip__right-second-mobile "
                 >Пожалуйста, укажите Ваш город.</small>
               </div>
             </div>
@@ -88,10 +88,8 @@
     </div>
 
     <div class="buttonAndWarning">
-      <div >
-
+      <div class="buttonAndWarning__star">
         <span>*</span> - поле обязательное для заполнения </div>
-
       <div class="buttons">
         <button class="buttons__stepBack"
                 @click.prevent="nextStepBack"

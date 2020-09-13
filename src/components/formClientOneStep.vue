@@ -176,8 +176,7 @@
         </div>
 
         <!-- Выбор врача-->
-
-        <div class="doctors">
+        <div class="doctors doctors__mobile">
           <div class="doctors__name require">Врач</div>
           <vSelect
               :options="namesDoctors"
@@ -204,7 +203,7 @@
       </div>
 
     <div class="buttonAndWarning">
-      <div>
+      <div class="buttonAndWarning__star">
         <span>*</span> - поле обязательное для заполнения
       </div>
 
